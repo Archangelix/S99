@@ -1,8 +1,9 @@
-package com
+package com.s99
+
 import scala.util.Random
 import scala.collection.mutable.ListBuffer
 
-object Exercises {
+object S01 {
   
   //1
   def last[A](list: List[A]) = list.last
@@ -148,6 +149,40 @@ object Exercises {
     }
   }
     
+  def group3[A](list: List[A]) = {
+    val combinationListA = combinations(2, list) // List(a,b) - List(a,c)
+    for (i <- combinationListA) yield {
+      val listB = list.filter(!i.contains(_)) // listB = List(c,d,e,f,g,h,i)
+      val combinationListB = combinations(3, listB) // List(c,d,e) - List(c,d,f) 
+      val resultC = (for (j <- combinationListB) yield {
+        val listC = listB.filter(!j.contains(_))
+        i :: j :: List(listC)
+      }).toList
+      resultC
+    }
+  }
+  
+  def group(listN: List[Int], listStr: List[String]): List[List[List[String]]] = {
+    if (listN.isEmpty) {
+      List(List(List()))
+    } else {
+    	val combinationList = combinations(listN.head, listStr)
+    	var result: List[List[List[String]]] = List()
+    	for (i <- combinationList) {
+    		val tempResult = group(listN.tail, listStr.filter(s => !i.contains(s)))
+    		result = result ::: tempResult.map(s => i :: s)
+    	}
+    	result
+    }
+  }
+  
+  def lsort(list: List[List[Char]]) = list.sort((a,b) => a.length < b.length)
+  
+  def lsortFreq(list: List[List[Char]]) = list.sort((a,b) => {
+    def freq(n: Int) = list.filter(s => s.length==n).length
+    freq(a.length) <= freq(b.length)
+  })
+  
   def main(args: Array[String]) = {
     println("Exercise No. 1\n===================")
     println (last(List(1, 1, 2, 3, 5, 8)))
@@ -252,6 +287,20 @@ object Exercises {
 
     println("Exercise No. 26\n===================")
     println(combinations(3, List('a', 'b', 'c', 'd', 'e', 'f')))
+    println
+
+    println("Exercise No. 27\n===================")
+    println(group3(List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida")))
+    println
+    println(group(List(2,3,4), List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida")))
+    println
+    
+    println("Exercise No. 27\n===================")
+    println(lsort(List(List('a', 'b', 'c'), List('d', 'e'), List('f', 'g', 'h'), List('d', 'e'), List('i', 'j', 'k', 'l'), List('m', 'n'), List('o'))))
+    println
+
+    println("Exercise No. 28\n===================")
+    println(lsortFreq(List(List('a', 'b', 'c'), List('d', 'e'), List('f', 'g', 'h'), List('d', 'e'), List('i', 'j', 'k', 'l'), List('m', 'n'), List('o'))))
     println
   }
   
