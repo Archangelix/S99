@@ -48,4 +48,6 @@ class S99Int(n: Int) {
 		val list = primeFactors
 		list.removeDuplicates.map(s => (s, list.filter(t => t==s).size))
 	} 
+	
+	def goldBach = (for (i <- 2 to n/2 if (i.isPrime && (n-i).isPrime)) yield (i, n-i)).head 
 }
