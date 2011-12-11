@@ -1,6 +1,5 @@
 package com.s99
 
-
 object S31 {
 	implicit def intS(n: Int) = new S99Int(n)
 
@@ -15,6 +14,15 @@ object S31 {
 	    println
 	    println("Exercise No. 33\n===================")
 	    println(35.isCoPrimeTo(70))
+	    println
+	    println("Exercise No. 34\n===================")
+	    println(10.totient)
+	    println
+	    println("Exercise No. 35\n===================")
+	    println(315.primeFactors)
+	    println
+	    println("Exercise No. 36\n===================")
+	    println(315.primeFactorMultiplicity)
 	    println
 	}
 }
