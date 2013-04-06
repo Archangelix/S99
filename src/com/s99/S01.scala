@@ -176,12 +176,12 @@ object S01 {
     }
   }
   
-  def lsort(list: List[List[Char]]) = list.sort((a,b) => a.length < b.length)
+  def lsort(list: List[List[Char]]) = list.sortBy(_.length) 
   
-  def lsortFreq(list: List[List[Char]]) = list.sort((a,b) => {
-    def freq(n: Int) = list.filter(s => s.length==n).length
-    freq(a.length) <= freq(b.length)
-  })
++  def lsortFreq(list: List[List[Char]]) = list.sortWith((a,b) => {
+     def freq(n: Int) = list.filter(s => s.length==n).length
+     freq(a.length) <= freq(b.length)
+   })
   
   def main(args: Array[String]) = {
     println("Exercise No. 1\n===================")

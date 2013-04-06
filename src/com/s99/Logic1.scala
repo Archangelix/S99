@@ -51,7 +51,7 @@ object Logic1 {
 	//49
 	def gray(n: Integer): List[String] = {
 	  if (n==1) List("0", "1");
-	  else gray(n-1).map(s => List("0"+s, "1"+s)).flatten.sort((a,b) => a<b);
+	  else gray(n-1).map(s => List("0"+s, "1"+s)).flatten.sorted
 	}
 	
 	def main(args: Array[String]) = {
