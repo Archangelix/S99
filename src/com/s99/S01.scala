@@ -178,7 +178,7 @@ object S01 {
   
   def lsort(list: List[List[Char]]) = list.sortBy(_.length) 
   
-+  def lsortFreq(list: List[List[Char]]) = list.sortWith((a,b) => {
+  def lsortFreq(list: List[List[Char]]) = list.sortWith((a,b) => {
      def freq(n: Int) = list.filter(s => s.length==n).length
      freq(a.length) <= freq(b.length)
    })
